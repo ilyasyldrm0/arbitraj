@@ -7,11 +7,6 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-# Streamlit sometimes loads this file as module name "app" (from app.py),
-# which shadows the real "app" package. Remove the shadow to allow imports.
-if sys.modules.get("app", None) is not None and getattr(sys.modules["app"], "__file__", None) == __file__:
-    del sys.modules["app"]
-
 import streamlit as st
 
 from app.config import load_settings
