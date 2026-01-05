@@ -35,21 +35,10 @@ st.info(
     "İzlemeyi başlatmak için Dashboard sayfasındaki Start Monitoring düğmesine basın."
 )
 
-
-def _run_streamlit() -> int:
-    streamlit_command = [sys.executable, "-m", "streamlit", "run", str(Path(__file__))]
-    return_code = 0
-    try:
-        import subprocess
-
-        return_code = subprocess.call(streamlit_command)
-    except FileNotFoundError:
-        print("Streamlit bulunamadı. Lütfen `pip install -r requirements.txt` çalıştırın.")
-        return_code = 1
-    return return_code
-
-
 if __name__ == "__main__":
     print("Başlatma kontrolü: ayarlar yüklendi ->", settings)
     print("Streamlit ile çalıştırmak için: streamlit run app/ui/app.py")
-    raise SystemExit(_run_streamlit())
+    # Do not spawn another Streamlit process from here. Streamlit itself runs
+    # this script and rerunning it via subprocess causes recursive starts
+    # that create multiple server instances and repeated restarts.
+    raise SystemExit(0)
