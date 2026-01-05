@@ -5,6 +5,7 @@ from datetime import datetime, timedelta, timezone
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+import streamlit.components.v1 as components
 
 from app.config import load_settings
 from app.core.state import STATE
@@ -106,4 +107,7 @@ if metrics:
 else:
     st.info("Grafik için yeterli veri yok.")
 
-st.autorefresh(interval=1000, key="dashboard_refresh")
+components.html(
+    "<script>setTimeout(function(){window.location.reload();}, 1000);</script>",
+    height=0,
+)
