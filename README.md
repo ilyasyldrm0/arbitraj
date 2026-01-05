@@ -62,12 +62,24 @@ python -m app.scripts.init_db
 ```
 
 ## Çalıştırma
+> Projeyi **root klasöründen** çalıştırın. Bu sayede `app` paketi her ortamda doğru şekilde bulunur.
+
 ### 1) Streamlit UI
 ```bash
 streamlit run app/ui/app.py
 ```
 
 UI içinden **Dashboard** sayfasında **Start Monitoring** ile websocket collector başlatılır.
+
+Windows tek tık çalıştırma:
+```bat
+run_ui.bat
+```
+
+Alternatif debug girişi:
+```bash
+python -m app.ui.app
+```
 
 ### 2) CLI Collector (opsiyonel)
 ```bash
